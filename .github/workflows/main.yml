@@ -35,7 +35,8 @@ jobs:
           
       - name: Install JAXB
         run: |
-          sudo apt-get install -y libjaxb-api-java
+          sudo apt-get update
+          sudo apt-get install -y libjaxb-api-java libjaxb-java
 
       - name: Create and start Android emulator
         run: |
