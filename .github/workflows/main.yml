@@ -9,7 +9,9 @@ jobs:
   run-tests:
     runs-on: ubuntu-latest
 
+
     steps:
+    
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/checkout@v2
 
@@ -17,6 +19,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
+        distribution: 'adopt'
 
     - name: Set up Android emulator
       uses: reactivecircus/android-emulator-runner@v2
