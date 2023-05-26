@@ -22,11 +22,11 @@ jobs:
         distribution: 'adopt'
 
     - name: Set up Android emulator
-      uses: reactivecircus/android-emulator-runner@v2
+      uses: action/setup-android-emulator@v1
       with:
-        node-version: $ {{ matrix.node-version }}
-        api-level: 28
+        api-level: 30
         target: default
+        emulator-version: latest
         arch: x86
 
     - name: Run tests
