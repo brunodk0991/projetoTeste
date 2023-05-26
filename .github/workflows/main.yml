@@ -32,6 +32,10 @@ jobs:
           echo 'export ANDROID_HOME=$HOME/android-sdk' >> $HOME/.bashrc
           echo 'export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools' >> $HOME/.bashrc
           echo 'yes' | $HOME/android-sdk/tools/bin/sdkmanager --licenses
+          
+      - name: Install JAXB
+        run: |
+          sudo apt-get install -y libjaxb-api-java
 
       - name: Create and start Android emulator
         run: |
