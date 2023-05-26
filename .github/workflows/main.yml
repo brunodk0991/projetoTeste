@@ -22,7 +22,7 @@ jobs:
         distribution: 'adopt'
 
     - name: Set up Android emulator
-      uses: action/setup-android-emulator@v1
+      uses: actions/setup-android-emulator@v1
       with:
         api-level: 30
         target: default
