@@ -3,14 +3,14 @@ name: Android Emulator Tests
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  build:
+  run-tests:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/checkout@v2
 
     - name: Set up JDK 11
@@ -21,6 +21,7 @@ jobs:
     - name: Set up Android emulator
       uses: reactivecircus/android-emulator-runner@v2
       with:
+        node-version: $ {{ matrix.node-version }}
         api-level: 28
         target: default
         arch: x86
