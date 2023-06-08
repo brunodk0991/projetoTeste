@@ -1,4 +1,4 @@
-name: Android Emulator Tests
+name: Android and iOS Emulator Tests
 
 on:
   push:
@@ -27,7 +27,6 @@ jobs:
           java-package: 'jdk'
           jdkFile: 'jdk8u144'
 
-
       - name: Set up Android SDK
         run: |
           wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk.zip
@@ -40,11 +39,30 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libjaxb-api-java libjaxb-java
-
+          
       - name: Create and start Android emulator
         run: |
           # Aqui você pode adicionar os comandos para criar e iniciar o emulador Android
-
-      - name: Run tests
+          
+      - name: Run Android tests
         run: |
           ./gradlew test
+          
+      - name: Set up Xcode
+        uses: actions/setup-xcode@v2
+        with:
+          xcode-select: 'latest'
+          
+      - name: Install CocoaPods
+        run: |
+          sudo gem install cocoapods
+          
+      - name: Install dependencies
+        run: |
+          cd ios
+          pod install
+          
+      - name: Run iOS tests
+        run: |
+          cd ios
+          xcodebuild test -scheme YourSchemeName -destination 'platform=iOS Simulator,name=iPhone 12 Pro,OS=15.0'
